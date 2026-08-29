@@ -1,0 +1,6 @@
+﻿services:
+  - type: static_site
+    name: sajda-privacy
+    env: static
+    buildCommand: "echo build-done"
+    staticPublishPath: .
