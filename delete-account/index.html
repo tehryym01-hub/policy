@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Deletion — Sajda: Daily Athan & Qibla</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; color: #1a1a1a; background: #f0f4f3; min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* Header */
+        .header { background: linear-gradient(135deg, #0F4C35 0%, #1a7a56 100%); color: #fff; padding: 40px 20px 32px; text-align: center; }
+        .header .logo { width: 64px; height: 64px; background: rgba(255,255,255,0.15); border-radius: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 14px; }
+        .header h1 { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+        .header p { font-size: 0.95rem; opacity: 0.85; }
+
+        /* Main */
+        .main { flex: 1; max-width: 640px; width: 100%; margin: 0 auto; padding: 28px 16px 40px; }
+
+        /* Card */
+        .card { background: #fff; border-radius: 16px; padding: 28px 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #e8ece9; }
+        .card h2 { font-size: 1.15rem; color: #0F4C35; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+        .card h2 .icon { font-size: 1.3rem; }
+        .card p, .card li { font-size: 0.92rem; color: #444; }
+        .card ul { margin-left: 20px; margin-top: 8px; }
+        .card li { margin-bottom: 6px; }
+
+        /* Form */
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 0.88rem; font-weight: 600; color: #333; margin-bottom: 6px; }
+        .form-group label .optional { font-weight: 400; color: #999; font-size: 0.82rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #dde3df; border-radius: 10px; font-size: 0.92rem; font-family: inherit; background: #f9fbfa; transition: border 0.2s, box-shadow 0.2s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #0F4C35; box-shadow: 0 0 0 3px rgba(15,76,53,0.1); background: #fff; }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+
+        .btn { display: block; width: 100%; padding: 14px; background: linear-gradient(135deg, #0F4C35, #1a7a56); color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform 0.15s, box-shadow 0.2s; }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(15,76,53,0.3); }
+        .btn:active { transform: translateY(0); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* Policy */
+        .policy-section h3 { font-size: 0.95rem; color: #0F4C35; margin-bottom: 8px; margin-top: 16px; }
+        .policy-section h3:first-child { margin-top: 0; }
+        .highlight-box { background: #f0f7f4; border-left: 4px solid #0F4C35; padding: 14px 16px; border-radius: 0 10px 10px 0; margin: 12px 0; }
+        .highlight-box p { font-size: 0.88rem; color: #555; margin-bottom: 6px; }
+        .highlight-box p:last-child { margin-bottom: 0; }
+        .highlight-box strong { color: #0F4C35; }
+
+        /* Toast */
+        .toast { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #0F4C35; color: #fff; padding: 14px 24px; border-radius: 12px; font-size: 0.92rem; font-weight: 600; box-shadow: 0 6px 24px rgba(0,0,0,0.2); z-index: 999; animation: slideUp 0.3s ease; }
+        .toast.error { background: #c0392b; }
+        .toast.show { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(16px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+        /* Footer */
+        .footer { text-align: center; padding: 20px; font-size: 0.82rem; color: #999; border-top: 1px solid #e8ece9; background: #fff; }
+        .footer a { color: #0F4C35; text-decoration: none; }
+
+        @media (max-width: 480px) {
+            .header { padding: 28px 16px 24px; }
+            .header h1 { font-size: 1.25rem; }
+            .main { padding: 20px 12px 32px; }
+            .card { padding: 22px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">&#9770;</div>
+        <h1>Sajda: Daily Athan & Qibla</h1>
+        <p>Account & Personal Data Deletion Request</p>
+    </div>
+
+    <div class="main">
+        <!-- Form Card -->
+        <div class="card">
+            <h2><span class="icon">&#9998;</span> Submit Deletion Request</h2>
+            <form id="deletionForm">
+                <div class="form-group">
+                    <label for="email">Registered Email Address <span class="optional">(Required)</span></label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Registered Mobile Number <span class="optional">(Optional)</span></label>
+                    <input type="tel" id="phone" name="phone" placeholder="+92 3XX XXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason for Deletion <span class="optional">(Optional)</span></label>
+                    <select id="reason" name="reason">
+                        <option value="">Select a reason...</option>
+                        <option value="no_longer_needed">I no longer use this app</option>
+                        <option value="privacy_concerns">Privacy concerns</option>
+                        <option value="duplicate_account">Duplicate account</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="details">Additional Details <span class="optional">(Optional)</span></label>
+                    <textarea id="details" name="details" placeholder="Any additional information..."></textarea>
+                </div>
+                <button type="submit" class="btn" id="submitBtn">Submit Deletion Request</button>
+            </form>
+        </div>
+
+        <!-- Data Policy Card -->
+        <div class="card policy-section">
+            <h2><span class="icon">&#128274;</span> Data Deletion Policy</h2>
+
+            <h3>Data That Will Be Erased</h3>
+            <div class="highlight-box">
+                <p>Upon successful processing of your request, the following data will be <strong>permanently deleted</strong>:</p>
+                <ul>
+                    <li>User profile and display name</li>
+                    <li>Saved preferences and app settings</li>
+                    <li>Prayer streak history and completion records</li>
+                    <li>Shared streak data and member associations</li>
+                    <li>All personal identifiers linked to your account</li>
+                </ul>
+            </div>
+
+            <h3>Data Retained</h3>
+            <div class="highlight-box">
+                <p><strong>Certain transactional or financial logs may be retained temporarily for legal and regulatory compliance.</strong></p>
+            </div>
+
+            <h3>Processing Timeframe</h3>
+            <div class="highlight-box">
+                <p><strong>Requests are processed within 7 to 14 business days.</strong> You will receive a confirmation email once your data has been fully deleted.</p>
+            </div>
+
+            <h3>Contact Support</h3>
+            <div class="highlight-box">
+                <p>For any questions or concerns, contact us at: <a href="mailto:privacydailyathan@gmail.com" style="color:#0F4C35;font-weight:600;">privacydailyathan@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Sajda: Daily Athan & Qibla &mdash; Developed by <a href="#">Mueed</a></p>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const form = document.getElementById('deletionForm');
+        const toast = document.getElementById('toast');
+        const submitBtn = document.getElementById('submitBtn');
+
+        function showToast(msg, isError) {
+            toast.textContent = msg;
+            toast.className = 'toast show' + (isError ? ' error' : '');
+            setTimeout(() => toast.className = 'toast', 4000);
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const data = {
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                reason: document.getElementById('reason').value,
+                details: document.getElementById('details').value.trim(),
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                const res = await fetch('https://backend-production-04292.up.railway.app/api/auth/delete-request', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                const result = await res.json();
+
+                if (res.ok) {
+                    showToast('Request submitted successfully. We will process it within 7-14 business days.', false);
+                    form.reset();
+                } else {
+                    showToast(result.message || 'Something went wrong. Please try again.', true);
+                }
+            } catch (err) {
+                showToast('Network error. Please try again later.', true);
+            }
+
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Deletion Request';
+        });
+    </script>
+</body>
+</html>
