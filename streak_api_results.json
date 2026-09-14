@@ -1,0 +1,5 @@
+{
+    "Test":  "auth/register",
+    "Result":  "FAIL",
+    "Detail":  "503 "
+}
